@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_165707) do
+ActiveRecord::Schema.define(version: 2018_06_11_170028) do
+
+  create_table "expired_names", force: :cascade do |t|
+    t.string "name"
+    t.integer "party_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["party_id"], name: "index_expired_names_on_party_id"
+  end
 
   create_table "parties", force: :cascade do |t|
     t.datetime "created_at", null: false
