@@ -1,3 +1,3 @@
-class ExpiredName < ApplicationRecord
-  belongs_to :party
+class ExpiredName < PartyName
+  self.table_name = 'expired_names'
 end
