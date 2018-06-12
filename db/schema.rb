@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_170028) do
+ActiveRecord::Schema.define(version: 2018_06_12_145912) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "expired_names", force: :cascade do |t|
     t.string "name"
-    t.integer "party_id"
+    t.bigint "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["party_id"], name: "index_expired_names_on_party_id"
@@ -27,10 +30,14 @@ ActiveRecord::Schema.define(version: 2018_06_11_170028) do
 
   create_table "party_names", force: :cascade do |t|
     t.string "name"
-    t.integer "party_id"
+    t.bigint "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "validForBegin"
+    t.date "validForEnd"
     t.index ["party_id"], name: "index_party_names_on_party_id"
   end
 
+  add_foreign_key "expired_names", "parties"
+  add_foreign_key "party_names", "parties"
 end

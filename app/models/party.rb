@@ -1,7 +1,9 @@
 class Party < ApplicationRecord
   has_one :name,
+    -> { valid },
     class_name: 'PartyName'
 
   has_many :expired_names,
-    class_name: 'ExpiredName'
+    -> { invalid },
+    class_name: 'PartyName'
 end
